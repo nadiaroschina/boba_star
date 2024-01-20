@@ -1,0 +1,5 @@
+st 1 7
+sol 30 3
+sol 20 4
+sol 10 6
+sol 15 5
