@@ -1,8 +1,8 @@
 # Biobjective pathfinding (search for Pareto-optimal solutions) 🦕
 
 In this project we are implementing a state-of-art algorithm for
-bi-objective pathfinding - $BOBA*$, along with two other algorithms and $BOBA*$ predecessors -
-$BOA*$ and $BOA*enh$
+bi-objective pathfinding - $BOBA^\*$, along with two other algorithms and $BOBA^\*$ predecessors -
+$BOA^\*$ and $BOA^\*enh$
 
 ## Problem setting
 
@@ -30,34 +30,34 @@ from the original [paper](https://arxiv.org/pdf/2105.11888.pdf)
 
 For more detailed algorithms descriptions and pseudocode we recommend to look it over
 
-### BOA*
+### $BOA^\*$
 
-$BOA*$ is an $A*$-based search algorithm, used to find a set of pareto-optimal solutions on a biobjective search graph.
+$BOA^\*$ is an $A^\*$-based search algorithm, used to find a set of pareto-optimal solutions on a biobjective search graph.
 Unlike previously invented algorithms, $BOA*$ only uses O(1) time to check pareto-optimality of a newly found path
 in the search tree by initially sorting graph states in a specific order
 
-Its realization is pretty simple and the pseudocode differs from A* one only in two extra search stopping conditions, as you can see below
+Its realization is pretty simple and the pseudocode differs from $A^\*$ one only in two extra search stopping conditions, as you can see below
 
 ![BOA* pseudocode](images/boastar_pseudocode.png)
 
 You can find this algorithm realization is in [boastar.py](boastar.py)
 
  
-### BOA*enh
+### $BOA^\*enh$
 
-This algorithm is an enhancement of BOA* and a main component of $BOBA*$. It optimizes $BOA*$, assuming that a different algorithm
-work in parallel with it and updates some bound and heurustics. Without this different algorithm, $BOA*enh$ works just a little faster 
-than simple $A*$
+This algorithm is an enhancement of $BOA^\*$ and a main component of $BOBA^\*$. It optimizes $BOA^\*$, assuming that a different algorithm
+work in parallel with it and updates some bound and heurustics. Without this different algorithm, $BOA^\*enh$ works just a little faster 
+than simple $BOA^\*$
 
-You can notice the difference between $BOA*enh$ and regular $BOA*$  in the red lines of the pseudocode below
+You can notice the difference between $BOA^\*enh$ and regular $BOA^\*$  in the red lines of the pseudocode below
 
 ![BOA*enh pseudocode](images/boastar_enh_pseudocode.png)
 
-The $BOA*enh$ algorithm realization is in [bobastar.py](bobastar.py)
+The $BOA^*enh$ algorithm realization is in [bobastar.py](bobastar.py)
 
-### BOBA*
+### $BOBA^\*$
 
-The main purpose of this project and a state-of-the art algorithm in biobjective pathfinding, BOBA* unites two BOA*enh algorithms
+The main purpose of this project and a state-of-the art algorithm in biobjective pathfinding, $BOBA^\*$ unites two $BOA^\*enh$ algorithms
 working in parallel, finding solutions from two ends of a pareto-optimal curve
 
 ![BOBA* pseudocode](images/boba_pseudocode.png)
