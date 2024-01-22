@@ -45,15 +45,15 @@ You can find this algorithm realization is in [boastar.py](boastar.py)
  
 ### BOA*enh
 
-This algorithm is an enhancement of BOA* and a main component of $BOBA*$. It optimizes $BOA*$, assuming that a different algorithm
-work in parallel with it and updates some bound and heurustics. Without this different algorithm, $BOA*enh$ works just a little faster 
-than simple $A*$
+This algorithm is an enhancement of $BOA^\*$ and a main component of $BOBA^\*$. It optimizes $BOA^\*$, assuming that a different algorithm
+work in parallel with it and updates some bound and heurustics. Without this different algorithm, $BOA^\*enh$ works just a little faster 
+than simple $BOA^\*$
 
-You can notice the difference between $BOA*enh$ and regular $BOA*$  in the red lines of the pseudocode below
+You can notice the difference between $BOA^\*enh$ and regular $BOA^\*$  in the red lines of the pseudocode below
 
 ![BOA*enh pseudocode](images/boastar_enh_pseudocode.png)
 
-The $BOA*enh$ algorithm realization is in [bobastar.py](bobastar.py)
+The $BOA^*enh$ algorithm realization is in [bobastar.py](bobastar.py)
 
 ### BOBA*
 
