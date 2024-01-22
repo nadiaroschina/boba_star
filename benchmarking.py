@@ -39,8 +39,10 @@ class Tester:
         self.res_times = dict()
         self.res_iters = dict()
         self.seed = seed
-        self.my_colors = iter(
-            ['tab:pink', 'tab:orange', 'tab:purple', 'tab:pink', 'tab:orange', 'tab:purple'])
+        self.my_colors = iter([
+            'tab:pink', 'tab:orange', 'tab:purple', 'tab:blue',
+            'tab:pink', 'tab:orange', 'tab:purple', 'tab:blue'
+        ])
         self.plot_dots = False
 
     def generate_problems(self) -> None:
@@ -52,10 +54,7 @@ class Tester:
             for _ in range(self.number_of_problems)
         ]
 
-    def benchmarking(
-        self,
-        algorithms: List[Callable]
-    ) -> None:
+    def benchmarking(self, algorithms: List[Callable]) -> None:
 
         if not self.problems:
             self.generate_problems()
@@ -63,16 +62,48 @@ class Tester:
 
         for algorithm in algorithms:
 
+            if algorithm.__name__ == 'boba_star':
+                continue
+
             alg_times = []
             alg_iters = []
 
             for ind, problem in tqdm(enumerate(self.problems)):
+
                 res = algorithm(self.task_map, problem[0], problem[1])
                 alg_times.append([ind + 1, res.time_elapsed])
                 alg_iters.append([ind + 1, res.iterations_count])
 
             self.res_times[algorithm.__name__] = alg_times
             self.res_iters[algorithm.__name__] = alg_iters
+
+        if 'boba_star' in [alg.__name__ for alg in algorithms]:
+
+            alg = [alg for alg in algorithms if alg.__name__ == 'boba_star'][0]
+
+            alg_times_real = []
+            alg_iters_real = []
+
+            alg_times_emulated_parallel = []
+            alg_iters_emulated_parallel = []
+
+            for ind, problem in tqdm(enumerate(self.problems)):
+
+                res = alg(self.task_map, problem[0], problem[1])
+
+                alg_times_real.append([ind + 1, res.total_time_elapsed])
+                alg_iters_real.append([ind + 1, res.total_iterations_count])
+
+                alg_times_emulated_parallel.append(
+                    [ind + 1, res.estimated_time_elapsed_in_parallel])
+                alg_iters_emulated_parallel.append(
+                    [ind + 1, res.estimated_iterations_count_in_parallel])
+
+            self.res_times['boba_star_real'] = alg_times_real
+            self.res_iters['boba_star_real'] = alg_iters_real
+
+            self.res_times['boba_star_emulated_parallel'] = alg_times_emulated_parallel
+            self.res_iters['boba_star_emulated_parallel'] = alg_iters_emulated_parallel
 
     def draw_results_for_times(self) -> None:
 

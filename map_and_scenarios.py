@@ -149,7 +149,7 @@ def read_map_from_file(
     cost_1 = defaultdict(lambda: INF)
     cost_2 = defaultdict(lambda: INF)
     edges = defaultdict(list)
-    name = path_cost_1.replace('/content/drive/MyDrive/BOBA_STAR/', '')
+    name = path_cost_1.replace('data/', '')
 
     # states coordinates
     with open(path_coords) as coords_file:

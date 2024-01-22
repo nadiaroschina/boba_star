@@ -1,14 +1,11 @@
 from map_and_scenarios import read_map_from_file, read_scen_from_file
 from boastar import boa_star
-from bobastar import boba_star_real, boba_star_emulated_parallel, boa_star_enh
+from bobastar import boba_star, boba_star_real, boba_star_emulated_parallel, boa_star_enh
 from test import test_algorithm
+from benchmarking import Tester
 
-INF = int(1e12)
 
-
-if __name__ == "__main__":
-
-    # sample maps and scenrarios
+def simple_test():
 
     sample_maps = [
         read_map_from_file(
@@ -40,3 +37,17 @@ if __name__ == "__main__":
             sample_maps,
             sample_scens
         )
+
+if __name__ == "__main__":
+
+    simple_test()
+
+    map_ny = read_map_from_file(
+        'data/NY/ny_dist.txt',
+        'data/NY/ny_time.txt',
+        'data/NY/ny_coord.txt'
+    )
+    algorithms = [boa_star, boa_star_enh, boba_star]
+
+    tester = Tester(number_of_problems=2, task_map=map_ny, seed=18)
+    tester.test_algorithms(algorithms)
