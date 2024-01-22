@@ -38,10 +38,8 @@ def simple_test():
             sample_scens
         )
 
-if __name__ == "__main__":
 
-    simple_test()
-
+def simple_plot():
     map_ny = read_map_from_file(
         'data/NY/ny_dist.txt',
         'data/NY/ny_time.txt',
@@ -51,3 +49,7 @@ if __name__ == "__main__":
 
     tester = Tester(number_of_problems=2, task_map=map_ny, seed=18)
     tester.test_algorithms(algorithms)
+
+
+if __name__ == "__main__":
+    simple_test()
